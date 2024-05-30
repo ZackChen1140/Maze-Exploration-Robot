@@ -34,4 +34,38 @@ def main():
     capture_thread.join()
 
 if __name__ == "__main__":
+<<<<<<< HEAD
     main()
+=======
+    
+    os.makedirs("images",exist_ok=True)
+    
+    # 打开摄像头
+    cap = cv2.VideoCapture(0)
+ 
+    m_thread = Thread(target=image_collect, args=([cap]),daemon=True)
+    
+    while True:
+ 
+        # 读取一帧图像
+ 
+        success, img = cap.read()
+        print(success)
+ 
+        if not success:
+ 
+            continue
+ 
+        cv2.imshow("video",img)
+ 
+        key =  cv2.waitKey(1) & 0xFF   
+ 
+        # 按键 "q" 退出
+        if key ==  ord('c'):
+            m_thread.start()
+            continue
+        elif key ==  ord('q'):
+            break
+ 
+    cap.release()
+>>>>>>> f9d2d36c85009db899f80fb52a9a09ef0a72bbc2
