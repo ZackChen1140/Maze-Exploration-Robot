@@ -47,4 +47,8 @@ if __name__ == "__main__":
         elif key ==  ord('q'):
             break
  
+<<<<<<< HEAD
     cap.release()
+=======
+    cap.release()
+>>>>>>> beb08936e76bd893cfe92d8f185def39b2b29ed7
