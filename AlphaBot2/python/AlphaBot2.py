@@ -3,15 +3,16 @@ import time
 
 class AlphaBot2(object):
 	
-	def __init__(self,ain1=12,ain2=13,ena=6,bin1=20,bin2=21,enb=26):
+	def __init__(self,ain1=12,ain2=13,ena=6,bin1=20,bin2=21,enb=26, fspeed=30, tspeed=20):
 		self.AIN1 = ain1
 		self.AIN2 = ain2
 		self.BIN1 = bin1
 		self.BIN2 = bin2
 		self.ENA = ena
 		self.ENB = enb
-		self.PA  = 50
-		self.PB  = 50
+		self.PA  = fspeed
+		self.PB  = fspeed
+		self.TS = tspeed
 
 		GPIO.setmode(GPIO.BCM)
 		GPIO.setwarnings(False)
@@ -54,8 +55,8 @@ class AlphaBot2(object):
 
 		
 	def left(self):
-		self.PWMA.ChangeDutyCycle(30)
-		self.PWMB.ChangeDutyCycle(30)
+		self.PWMA.ChangeDutyCycle(self.TS)
+		self.PWMB.ChangeDutyCycle(self.TS)
 		GPIO.output(self.AIN1,GPIO.HIGH)
 		GPIO.output(self.AIN2,GPIO.LOW)
 		GPIO.output(self.BIN1,GPIO.LOW)
@@ -63,8 +64,8 @@ class AlphaBot2(object):
 
 
 	def right(self):
-		self.PWMA.ChangeDutyCycle(30)
-		self.PWMB.ChangeDutyCycle(30)
+		self.PWMA.ChangeDutyCycle(self.TS)
+		self.PWMB.ChangeDutyCycle(self.TS)
 		GPIO.output(self.AIN1,GPIO.LOW)
 		GPIO.output(self.AIN2,GPIO.HIGH)
 		GPIO.output(self.BIN1,GPIO.HIGH)
