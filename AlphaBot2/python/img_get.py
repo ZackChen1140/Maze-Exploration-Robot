@@ -21,13 +21,11 @@ def main():
         img = im[...,::-1] #bgr2rgb
         results = model(img)
         
-        results.print()
-        results.show()
+        results.xyxy[0]
+        results.pandas.xyxy[0]
 
-        break
-
-        cv2.imshow("Result", img)
-        cv2.waitKey(1)
+        # cv2.imshow("Result", img)
+        # cv2.waitKey(1)
 
 if __name__ == "__main__":
     main()
