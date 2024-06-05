@@ -22,7 +22,7 @@ def main():
         results = model(img)
         
         results.xyxy[0]
-        results.pandas.xyxy[0]
+        results.pandas().xyxy[0]
 
         # cv2.imshow("Result", img)
         # cv2.waitKey(1)
