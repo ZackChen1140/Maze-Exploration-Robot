@@ -24,6 +24,8 @@ def main():
         results.print()
         results.show()
 
+        break
+
         cv2.imshow("Result", img)
         cv2.waitKey(1)
 
