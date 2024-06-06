@@ -18,17 +18,19 @@ def main():
 
     while True:
         im = picamera.capture_array()
-        img = im[...,::-1] #bgr2rgb
-        results = model(img)
+        #img = im[...,::-1] #bgr2rgb
+        results = model(im)
         
         results.print()
 
-        results.save()
+        results.save(save_dir='/home/rvl/Zack_Kana/Maze-Exploration-Robot/AlphaBot2/python')
         result0_path = results.files[0]
         result_img = cv2.imread(result0_path)
 
-        cv2.imshow("Result", img)
+        cv2.imshow("Result", result_img)
         cv2.waitKey(1)
+
+
 
 if __name__ == "__main__":
     main()
