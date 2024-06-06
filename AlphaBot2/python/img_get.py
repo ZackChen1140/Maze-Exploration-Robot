@@ -23,11 +23,13 @@ def main():
         
         results.print()
 
-        results.save(save_dir='/home/rvl/Zack_Kana/Maze-Exploration-Robot/AlphaBot2/python')
-        result0_path = results.files[0]
-        result_img = cv2.imread(result0_path)
+        #results.save()
+        results.render()
+        # result0_path = results.files[0]
+        # result_img = cv2.imread(result0_path)
+        result_bgr = results.imgs[0][...,::-1] #bgr2rgb
 
-        cv2.imshow("Result", result_img)
+        cv2.imshow("Result", result_bgr)
         cv2.waitKey(1)
 
 
