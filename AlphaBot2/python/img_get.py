@@ -21,6 +21,8 @@ def main():
         img = im[...,::-1] #bgr2rgb
         results = model(img)
         
+        print(results.xyxy[0])
+
         results.save()
         result0_path = results.files[0]
         result_img = cv2.imread(result0_path)
