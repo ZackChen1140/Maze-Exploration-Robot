@@ -21,7 +21,7 @@ def main():
         img = im[...,::-1] #bgr2rgb
         results = model(img)
         
-        print(results.xyxy[0])
+        results.print()
 
         results.save()
         result0_path = results.files[0]
