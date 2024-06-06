@@ -18,18 +18,12 @@ def main():
 
     while True:
         im = picamera.capture_array()
-        #img = im[...,::-1] #bgr2rgb
         results = model(im)
         
         results.print()
-
-        #results.save()
         results.render()
-        # result0_path = results.files[0]
-        # result_img = cv2.imread(result0_path)
-        result_bgr = results.imgs[0][...,::-1] #bgr2rgb
 
-        cv2.imshow("Result", result_bgr)
+        cv2.imshow("Result", results.ims[0])
         cv2.waitKey(1)
 
 
