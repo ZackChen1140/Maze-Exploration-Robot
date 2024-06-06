@@ -21,11 +21,12 @@ def main():
         img = im[...,::-1] #bgr2rgb
         results = model(img)
         
-        results.xyxy[0]
-        results.pandas().xyxy[0]
+        results.save()
+        result0_path = results.files[0]
+        result_img = cv2.imread(result0_path)
 
-        # cv2.imshow("Result", img)
-        # cv2.waitKey(1)
+        cv2.imshow("Result", img)
+        cv2.waitKey(1)
 
 if __name__ == "__main__":
     main()
