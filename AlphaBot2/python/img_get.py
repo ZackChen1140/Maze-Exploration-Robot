@@ -12,7 +12,7 @@ def capture_image(picamera, interval=1):
 
 def main():
     picamera = Picamera2()
-    picamera.configure(picamera.create_preview_configuration(main={"format": 'XRGB8888', "size": (640, 480)}))
+    picamera.configure(picamera.create_preview_configuration(main={"format": 'XRGB8888', "size": (1920, 1080)}))
     picamera.start()
     model = torch.hub.load('ultralytics/yolov5', 'yolov5s', pretrained=True)
 
