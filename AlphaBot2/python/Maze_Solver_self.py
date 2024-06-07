@@ -4,6 +4,7 @@ from AlphaBot2 import AlphaBot2
 from picamera2 import Picamera2, Preview
 import torch
 import cv2
+from rpi_ws281x import Adafruit_NeoPixel, Color
 
 Ab = AlphaBot2()
 
@@ -11,6 +12,17 @@ Ab = AlphaBot2()
 
 TRIG = 22  
 ECHO = 27
+
+# LED strip configuration:
+LED_COUNT      = 4      # Number of LED pixels.
+LED_PIN        = 18      # GPIO pin connected to the pixels (must support PWM!).
+LED_FREQ_HZ    = 800000  # LED signal frequency in hertz (usually 800khz)
+LED_DMA        = 5       # DMA channel to use for generating signal (try 5)
+LED_BRIGHTNESS = 255     # Set to 0 for darkest and 255 for brightest
+LED_INVERT     = False   # True to invert the signal (when using NPN transistor level shift)
+LED_CHANNEL    = 0
+
+strip = Adafruit_NeoPixel(LED_COUNT, LED_PIN, LED_FREQ_HZ, LED_DMA, LED_INVERT, LED_BRIGHTNESS)
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
@@ -74,11 +86,12 @@ def MazeSolver(zastavica):
         im = picamera.capture_array()
         results = model(im)
         detected_classes = results.pandas().xyxy[0]['name'].tolist()
-        if 'sports ball' in detected_classes:
-                Ab.Buffer_ON()
-                time.sleep(10)
-                Ab.Buffer_OFF()
-                return
+        results.print()
+        if 'cup' in detected_classes:
+                Ab.right()
+                time.sleep(4.2)
+                Ab.stop()
+                print("Find the cup!!")
 
         Ab.forward()
         time.sleep(1) # 0.7 second or 10cm forward
