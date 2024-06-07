@@ -75,7 +75,10 @@ def MazeSolver(zastavica):
         results = model(im)
         detected_classes = results.pandas().xyxy[0]['name'].tolist()
         if 'sports ball' in detected_classes:
-               return
+                Ab.Buffer_ON()
+                time.sleep(10)
+                Ab.Buffer_OFF()
+                return
 
         Ab.forward()
         time.sleep(1) # 0.7 second or 10cm forward
