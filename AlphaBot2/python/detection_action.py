@@ -11,22 +11,22 @@ ECHO = 27
 Ab = AlphaBot2()
 
 def GoForward(degree):
-    Ab.forward()
+	Ab.forward()
 	time.sleep(degree)
 	Ab.stop()
-    time.sleep(0.5)
+	time.sleep(0.5)
 
 def TurnRight(degree):
-    Ab.right()
+	Ab.right()
 	time.sleep(degree)
 	Ab.stop()
-    time.sleep(0.5)
+	time.sleep(0.5)
  
 def TurnLeft(degree):
-    Ab.left()
+	Ab.left()
 	time.sleep(degree)
 	Ab.stop()
-    time.sleep(0.5) 
+	time.sleep(0.5) 
     
     
 
