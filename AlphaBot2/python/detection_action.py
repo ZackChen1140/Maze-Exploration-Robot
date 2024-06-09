@@ -12,8 +12,8 @@ left_dic = {'left': 'back', 'front': 'left', 'right': 'front', 'back': 'right'}
 TRIG = 22
 ECHO = 27
 rigAng = 0.3
-flatAng = 0.5
-forwardTime = 1.5
+flatAng = 0.55
+forwardTime = 1.4
 wallDist = 40
 Ab = AlphaBot2()
 
@@ -39,7 +39,7 @@ def detection():
 	im = picamera.capture_array()
 	results = model(im)
 	detected_classes = results.pandas().xyxy[0]['name'].tolist()
-	if 'sports ball' in detected_classes:
+	if 'cup' in detected_classes:
 		Ab.Buffer_ON()
 		time.sleep(10)
 		Ab.Buffer_OFF()
@@ -126,7 +126,7 @@ if __name__=='__main__':
 
 	pwm = PCA9685(0x40, debug=True)
 	pwm.setPWMFreq(50)
-	pwm.setServoPulse(2,2500)
+	pwm.setServoPulse(1,700)
 	pwm.setServoPulse(0,1300)
 
 	try:
@@ -136,6 +136,7 @@ if __name__=='__main__':
 		while True:
 			update_dict = check_update_require(current_direction)
 			if update_dict == dict():
+				print('No any way!')
 				break
 			update_nodes(current_node, update_dict) #有路就新增node
 			current_direction = right_dic.get(current_direction) #每次檢查完最後一格方向是右邊
