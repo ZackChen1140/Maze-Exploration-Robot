@@ -152,8 +152,9 @@ if __name__=='__main__':
 				last_node = current_node
 				current_node = current_node.left
 				if last_node.front == None and last_node.right == None and last_node.back == None:
-					print('delete node')
 					current_node.right = None #若其他方向都沒路就不用再回來了
+				if current_node.right == None:
+					print('delete node')
 				
 				current_direction = 'left'
 			elif current_node.front != None:
@@ -170,8 +171,9 @@ if __name__=='__main__':
 				last_node = current_node
 				current_node = current_node.front
 				if last_node.left == None and last_node.right == None and last_node.back == None:
-					print('delete node')
 					current_node.back = None
+				if current_node.back == None:
+					print('delete node')
 
 				current_direction = 'front'
 			elif current_node.right != None:
@@ -188,8 +190,9 @@ if __name__=='__main__':
 				last_node = current_node
 				current_node = current_node.right
 				if last_node.left == None and last_node.front == None and last_node.back == None:
-					print('delete node')
 					current_node.left = None
+				if current_node.left == None:
+					print('delete node')
 				current_direction = 'right'
 			elif current_node.back != None:
 				if current_direction == 'left':
@@ -205,8 +208,9 @@ if __name__=='__main__':
 				last_node = current_node
 				current_node = current_node.back
 				if last_node.left == None and last_node.front == None and last_node.right == None:
-					print('delete node')
 					current_node.front = None
+				if current_node.front == None:
+					print('delete node')
 				
 				current_direction = 'back'
 			else:
