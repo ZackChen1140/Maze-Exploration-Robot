@@ -10,8 +10,8 @@ left_dic = {'left': 'back', 'front': 'left', 'right': 'front', 'back': 'right'}
 
 TRIG = 22
 ECHO = 27
-rigAng = 0.3
-flatAng = 0.55
+rigAng = 0.275
+flatAng = 0.5
 forwardTime = 1.4
 wallDist = 40
 Ab = AlphaBot2()
