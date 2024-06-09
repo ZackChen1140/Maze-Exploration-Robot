@@ -41,7 +41,8 @@ try:
         DL_status = GPIO.input(DL)
         print("Distance = %0.2f cm" % Dist)
         
-        if Dist <= 15:
+        if Dist <= 20:
+            Ab.Buffer_ON()
             if DL_status == 0 :
                 Ab.left()
                 print("Turn left")
@@ -50,12 +51,14 @@ try:
                 print("Turn right")
             else :
                 Ab.left()
-            time.sleep(0.25)
+            time.sleep(0.3)
+            Ab.Buffer_OFF()
             Ab.stop()
+            
             
         else:
             Ab.forward()
-            time.sleep(0.02)
+        time.sleep(0.02)
 
 
 except KeyboardInterrupt:

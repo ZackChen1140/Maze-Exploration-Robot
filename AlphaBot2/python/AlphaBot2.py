@@ -3,11 +3,12 @@ import time
 
 class AlphaBot2(object):
 	
-	def __init__(self,ain1=12,ain2=13,ena=6,bin1=20,bin2=21,enb=26, fspeed=30, tspeed=20):
+	def __init__(self,ain1=12,ain2=13,ena=6,bin1=20,bin2=21,enb=26,BUFFER_PIN=4,fspeed=30,tspeed=20):
 		self.AIN1 = ain1
 		self.AIN2 = ain2
 		self.BIN1 = bin1
 		self.BIN2 = bin2
+		self.BUFFER_PIN = BUFFER_PIN
 		self.ENA = ena
 		self.ENB = enb
 		self.PA  = fspeed
@@ -22,6 +23,7 @@ class AlphaBot2(object):
 		GPIO.setup(self.BIN2,GPIO.OUT)
 		GPIO.setup(self.ENA,GPIO.OUT)
 		GPIO.setup(self.ENB,GPIO.OUT)
+		GPIO.setup(self.BUFFER_PIN, GPIO.OUT)
 		self.PWMA = GPIO.PWM(self.ENA,500)
 		self.PWMB = GPIO.PWM(self.ENB,500)
 		self.PWMA.start(self.PA)
@@ -96,6 +98,12 @@ class AlphaBot2(object):
 			GPIO.output(self.BIN1,GPIO.LOW)
 			GPIO.output(self.BIN2,GPIO.HIGH)
 			self.PWMB.ChangeDutyCycle(0 - left)
+			
+	def Buffer_ON(self):
+		GPIO.output(self.BUFFER_PIN, GPIO.HIGH)
+
+	def Buffer_OFF(self):
+		GPIO.output(self.BUFFER_PIN, GPIO.LOW)
 
 if __name__=='__main__':
 

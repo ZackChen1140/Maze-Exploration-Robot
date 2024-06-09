@@ -18,14 +18,15 @@ def main():
 
     while True:
         im = picamera.capture_array()
-        img = im[...,::-1] #bgr2rgb
-        results = model(img)
+        results = model(im)
         
         results.print()
-        results.show()
+        results.render()
 
-        cv2.imshow("Result", img)
+        cv2.imshow("Result", results.ims[0])
         cv2.waitKey(1)
+
+
 
 if __name__ == "__main__":
     main()
