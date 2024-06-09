@@ -53,6 +53,7 @@ class Node(object):
 		self.front = front
 		self.right = right
 		self.back = back
+		self.checked = False
 
 def capture_image(picamera, interval=1):
     counter = 0
@@ -109,6 +110,7 @@ def update_nodes(node, update_req_dic):
 		node.right = Node(left=node, front=None, right=None, back=None)
 	if update_req_dic.get('back'):
 		node.back = Node(left=None, front=node, right=None, back=None)
+	node.checked = True
 
 picamera = Picamera2()
 picamera.configure(picamera.create_preview_configuration(main={"format": 'XRGB8888', "size": (640, 480)}))
@@ -134,11 +136,12 @@ if __name__=='__main__':
 		current_node = root
 		current_direction = 'front'
 		while True:
-			update_dict = check_update_require(current_direction)
-			if update_dict == dict():
-				print('No any way!')
-				break
-			update_nodes(current_node, update_dict) #有路就新增node
+			if not current_node.checked:
+				update_dict = check_update_require(current_direction)
+				if update_dict == dict():
+					print('No any way!')
+					break
+				update_nodes(current_node, update_dict) #有路就新增node
 			current_direction = right_dic.get(current_direction) #每次檢查完最後一格方向是右邊
 			if current_node.left != None:
 				if current_direction == 'front':
@@ -197,7 +200,7 @@ if __name__=='__main__':
 				current_node = current_node.back
 				current_direction = 'back'
 			else:
-
+				print('No any way!')
 				break
 
 
