@@ -41,7 +41,10 @@ def detection():
 	detected_classes = results.pandas().xyxy[0]['name'].tolist()
 	if 'cup' in detected_classes:
 		Ab.Buffer_ON()
-		time.sleep(10)
+		Ab.right()
+		print("Find the cup!!")
+		time.sleep(4.2)
+		Ab.stop()
 		Ab.Buffer_OFF()
 		return True
 	else:
