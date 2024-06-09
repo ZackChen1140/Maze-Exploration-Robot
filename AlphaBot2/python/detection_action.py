@@ -11,7 +11,7 @@ left_dic = {'left': 'back', 'front': 'left', 'right': 'front', 'back': 'right'}
 
 TRIG = 22
 ECHO = 27
-rigAng = 0.275
+rigAng = 0.3
 flatAng = 0.5
 forwardTime = 1.5
 wallDist = 40
@@ -79,18 +79,21 @@ def check_update_require(cDire):
 	if detection():
 		return dict()
 	if Distance() > wallDist:
+		print('front')
 		update_req_dic.update({cDire: True})
 
 	TurnLeft(rigAng)
 	if detection():
 		return dict()
 	if Distance() > wallDist:
+		print('left')
 		update_req_dic.update({left_dic.get(cDire): True})
 
 	TurnRight(flatAng)
 	if detection():
 		return dict()
 	if Distance() > wallDist:
+		print('right')
 		update_req_dic.update({right_dic.get(cDire): True})
 
 	return update_req_dic
