@@ -137,7 +137,7 @@ if __name__=='__main__':
 			if not current_node.checked:
 				update_dict = check_update_require(current_direction)
 				update_nodes(current_node, update_dict) #有路就新增node
-			current_direction = right_dic.get(current_direction) #每次檢查完最後一格方向是右邊
+				current_direction = right_dic.get(current_direction) #每次檢查完最後一格方向是右邊
 			if current_node.left != None:
 				if current_direction == 'front':
 					TurnLeft(rigAng)
