@@ -10,7 +10,7 @@ left_dic = {'left': 'back', 'front': 'left', 'right': 'front', 'back': 'right'}
 
 TRIG = 22
 ECHO = 27
-rigAng = 0.275
+rigAng = 0.27
 flatAng = 0.55
 forwardTime = 1.4
 wallDist = 40
