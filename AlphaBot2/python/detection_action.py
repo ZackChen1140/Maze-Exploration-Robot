@@ -10,8 +10,10 @@ left_dic = {'left': 'back', 'front': 'left', 'right': 'front', 'back': 'right'}
 
 TRIG = 22
 ECHO = 27
-rigAng = 0.27
-flatAng = 0.55
+lrigAng = 0.27
+rrigAng = 0.275
+lflatAng = 0.54
+rflatAng = 0.55
 forwardTime = 1.4
 wallDist = 40
 Ab = AlphaBot2()
@@ -85,14 +87,14 @@ def check_update_require(cDire):
 		print('front')
 		update_req_dic.update({cDire: True})
 
-	TurnLeft(rigAng)
+	TurnLeft(lrigAng)
 	if detection():
 		return dict()
 	if Distance() > wallDist:
 		print('left')
 		update_req_dic.update({left_dic.get(cDire): True})
 
-	TurnRight(flatAng)
+	TurnRight(rflatAng)
 	if detection():
 		return dict()
 	if Distance() > wallDist:
@@ -143,11 +145,11 @@ if __name__=='__main__':
 				current_direction = right_dic.get(current_direction) #每次檢查完最後一格方向是右邊
 			if current_node.left != None:
 				if current_direction == 'front':
-					TurnLeft(rigAng)
+					TurnLeft(lrigAng)
 				elif current_direction == 'right':
-					TurnLeft(flatAng)
+					TurnLeft(lflatAng)
 				elif current_direction == 'back':
-					TurnRight(rigAng)
+					TurnRight(rrigAng)
                 
 				print('Go Left!')
 				GoForward(forwardTime)
@@ -162,11 +164,11 @@ if __name__=='__main__':
 				current_direction = 'left'
 			elif current_node.front != None:
 				if current_direction == 'left':
-					TurnRight(rigAng)
+					TurnRight(rrigAng)
 				elif current_direction == 'right':
-					TurnLeft(rigAng)
+					TurnLeft(lrigAng)
 				elif current_direction == 'back':
-					TurnRight(flatAng)
+					TurnRight(rflatAng)
                 
 				print('Go Forward!')
 				GoForward(forwardTime)
@@ -181,11 +183,11 @@ if __name__=='__main__':
 				current_direction = 'front'
 			elif current_node.right != None:
 				if current_direction == 'left':
-					TurnRight(flatAng)
+					TurnRight(rflatAng)
 				elif current_direction == 'front':
-					TurnRight(rigAng)
+					TurnRight(rrigAng)
 				elif current_direction == 'back':
-					TurnLeft(rigAng)
+					TurnLeft(lrigAng)
                 
 				print('Go Right!')
 				GoForward(forwardTime)
@@ -199,11 +201,11 @@ if __name__=='__main__':
 				current_direction = 'right'
 			elif current_node.back != None:
 				if current_direction == 'left':
-					TurnLeft(rigAng)
+					TurnLeft(lrigAng)
 				elif current_direction == 'front':
-					TurnLeft(flatAng)
+					TurnLeft(lflatAng)
 				elif current_direction == 'right':
-					TurnRight(rigAng)
+					TurnRight(rrigAng)
                 
 				print('Go Back!')
 				GoForward(forwardTime)
