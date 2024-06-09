@@ -136,9 +136,6 @@ if __name__=='__main__':
 		while True:
 			if not current_node.checked:
 				update_dict = check_update_require(current_direction)
-				if update_dict == dict():
-					print('No any way!')
-					break
 				update_nodes(current_node, update_dict) #有路就新增node
 			current_direction = right_dic.get(current_direction) #每次檢查完最後一格方向是右邊
 			if current_node.left != None:
@@ -148,7 +145,8 @@ if __name__=='__main__':
 					TurnLeft(flatAng)
 				elif current_direction == 'back':
 					TurnRight(rigAng)
-                    
+                
+				print('Go Left!')
 				GoForward(forwardTime)
                 
 				last_node = current_node
@@ -165,7 +163,8 @@ if __name__=='__main__':
 					TurnLeft(rigAng)
 				elif current_direction == 'back':
 					TurnRight(flatAng)
-                    
+                
+				print('Go Forward!')
 				GoForward(forwardTime)
                 
 				last_node = current_node
@@ -182,7 +181,8 @@ if __name__=='__main__':
 					TurnRight(rigAng)
 				elif current_direction == 'back':
 					TurnLeft(rigAng)
-                    
+                
+				print('Go Right!')
 				GoForward(forwardTime)
                 
 				last_node = current_node
@@ -198,7 +198,8 @@ if __name__=='__main__':
 					TurnLeft(flatAng)
 				elif current_direction == 'right':
 					TurnRight(rigAng)
-                    
+                
+				print('Go Back!')
 				GoForward(forwardTime)
                 
 				last_node = current_node
