@@ -11,8 +11,10 @@ left_dic = {'left': 'back', 'front': 'left', 'right': 'front', 'back': 'right'}
 
 TRIG = 22
 ECHO = 27
-rigAng = 0.3
+rigAng = 0.275
 flatAng = 0.5
+forwardTime = 1.5
+wallDist = 40
 Ab = AlphaBot2()
 
 def GoForward(degree):
@@ -76,19 +78,19 @@ def check_update_require(cDire):
 	update_req_dic = {'left': False, 'front': False, 'right': False, 'back': False}
 	if detection():
 		return dict()
-	if Distance() > 35:
+	if Distance() > wallDist:
 		update_req_dic.update({cDire: True})
 
 	TurnLeft(rigAng)
 	if detection():
 		return dict()
-	if Distance() > 35:
+	if Distance() > wallDist:
 		update_req_dic.update({left_dic.get(cDire): True})
 
 	TurnRight(flatAng)
 	if detection():
 		return dict()
-	if Distance() > 35:
+	if Distance() > wallDist:
 		update_req_dic.update({right_dic.get(cDire): True})
 
 	return update_req_dic
@@ -142,7 +144,7 @@ if __name__=='__main__':
 				elif current_direction == 'back':
 					TurnRight(rigAng)
                     
-				GoForward(1.3)
+				GoForward(forwardTime)
                 
 				if current_node.front == None and current_node.right == None and current_node.back == None:
 					current_node.left.right = None #若其他方向都沒路就不用再回來了
@@ -156,7 +158,7 @@ if __name__=='__main__':
 				elif current_direction == 'back':
 					TurnRight(flatAng)
                     
-				GoForward(1.3)
+				GoForward(forwardTime)
                 
 				if current_node.left == None and current_node.right == None and current_node.back == None:
 					current_node.front.back = None
@@ -170,7 +172,7 @@ if __name__=='__main__':
 				elif current_direction == 'back':
 					TurnLeft(rigAng)
                     
-				GoForward(1.3)
+				GoForward(forwardTime)
                 
 				if current_node.left == None and current_node.front == None and current_node.back == None:
 					current_node.right.left = None
@@ -184,7 +186,7 @@ if __name__=='__main__':
 				elif current_direction == 'right':
 					TurnRight(rigAng)
                     
-				GoForward(1.3)
+				GoForward(forwardTime)
                 
 				if current_node.left == None and current_node.front == None and current_node.right == None:
 					current_node.back.front = None
