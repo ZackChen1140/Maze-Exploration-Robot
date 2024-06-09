@@ -2,6 +2,7 @@ import RPi.GPIO as GPIO
 import time
 from picamera2 import Picamera2, Preview
 from AlphaBot2 import AlphaBot2
+from PCA9685 import PCA9685
 import torch
 import cv2
 
@@ -10,7 +11,7 @@ left_dic = {'left': 'back', 'front': 'left', 'right': 'front', 'back': 'right'}
 
 TRIG = 22
 ECHO = 27
-rigAng = 0.25
+rigAng = 0.3
 flatAng = 0.5
 Ab = AlphaBot2()
 
@@ -117,6 +118,11 @@ if __name__=='__main__':
 	GPIO.setwarnings(False)
 	GPIO.setup(TRIG,GPIO.OUT,initial=GPIO.LOW)
 	GPIO.setup(ECHO,GPIO.IN)
+
+	pwm = PCA9685(0x40, debug=True)
+	pwm.setPWMFreq(50)
+	pwm.setServoPulse(2,2500)
+	pwm.setServoPulse(0,1300)
 
 	try:
 		root = Node(None, None, None, None)
