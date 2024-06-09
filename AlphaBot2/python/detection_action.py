@@ -130,6 +130,7 @@ if __name__=='__main__':
 
 	try:
 		root = Node(None, None, None, None)
+		last_node = None
 		current_node = root
 		current_direction = 'front'
 		while True:
@@ -150,9 +151,12 @@ if __name__=='__main__':
                     
 				GoForward(forwardTime)
                 
-				if current_node.front == None and current_node.right == None and current_node.back == None:
-					current_node.left.right = None #若其他方向都沒路就不用再回來了
+				last_node = current_node
 				current_node = current_node.left
+				if last_node.front == None and last_node.right == None and last_node.back == None:
+					print('delete node')
+					current_node.right = None #若其他方向都沒路就不用再回來了
+				
 				current_direction = 'left'
 			elif current_node.front != None:
 				if current_direction == 'left':
@@ -164,9 +168,12 @@ if __name__=='__main__':
                     
 				GoForward(forwardTime)
                 
-				if current_node.left == None and current_node.right == None and current_node.back == None:
-					current_node.front.back = None
+				last_node = current_node
 				current_node = current_node.front
+				if last_node.left == None and last_node.right == None and last_node.back == None:
+					print('delete node')
+					current_node.back = None
+
 				current_direction = 'front'
 			elif current_node.right != None:
 				if current_direction == 'left':
@@ -178,9 +185,11 @@ if __name__=='__main__':
                     
 				GoForward(forwardTime)
                 
-				if current_node.left == None and current_node.front == None and current_node.back == None:
-					current_node.right.left = None
+				last_node = current_node
 				current_node = current_node.right
+				if last_node.left == None and last_node.front == None and last_node.back == None:
+					print('delete node')
+					current_node.left = None
 				current_direction = 'right'
 			elif current_node.back != None:
 				if current_direction == 'left':
@@ -192,9 +201,12 @@ if __name__=='__main__':
                     
 				GoForward(forwardTime)
                 
-				if current_node.left == None and current_node.front == None and current_node.right == None:
-					current_node.back.front = None
+				last_node = current_node
 				current_node = current_node.back
+				if last_node.left == None and last_node.front == None and last_node.right == None:
+					print('delete node')
+					current_node.front = None
+				
 				current_direction = 'back'
 			else:
 				print('No any way!')
