@@ -15,7 +15,7 @@ rrigAng = 0.275
 lflatAng = 0.55
 rflatAng = 0.55
 forwardTime = 1.4
-wallDist = 80
+wallDist = 60
 Ab = AlphaBot2()
 
 def GoForward(degree):
