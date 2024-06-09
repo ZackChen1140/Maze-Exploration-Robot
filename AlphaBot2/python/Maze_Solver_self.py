@@ -86,7 +86,7 @@ def MazeSolver(zastavica):
         im = picamera.capture_array()
         results = model(im)
         detected_classes = results.pandas().xyxy[0]['name'].tolist()
-        results.print()
+
         if 'cup' in detected_classes:
                 Ab.right()
                 time.sleep(4.2)

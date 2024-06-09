@@ -10,6 +10,8 @@ left_dic = {'left': 'back', 'front': 'left', 'right': 'front', 'back': 'right'}
 
 TRIG = 22
 ECHO = 27
+rigAng = 0.25
+flatAng = 0.5
 Ab = AlphaBot2()
 
 def GoForward(degree):
@@ -73,19 +75,19 @@ def check_update_require(cDire):
 	update_req_dic = {'left': False, 'front': False, 'right': False, 'back': False}
 	if detection():
 		return dict()
-	if Distance() > 40:
+	if Distance() > 35:
 		update_req_dic.update({cDire: True})
 
-	TurnLeft(0.3)
+	TurnLeft(rigAng)
 	if detection():
 		return dict()
-	if Distance() > 40:
+	if Distance() > 35:
 		update_req_dic.update({left_dic.get(cDire): True})
 
-	TurnRight(0.6)
+	TurnRight(flatAng)
 	if detection():
 		return dict()
-	if Distance() > 40:
+	if Distance() > 35:
 		update_req_dic.update({right_dic.get(cDire): True})
 
 	return update_req_dic
@@ -128,13 +130,13 @@ if __name__=='__main__':
 			current_direction = right_dic.get(current_direction) #每次檢查完最後一格方向是右邊
 			if current_node.left != None:
 				if current_direction == 'front':
-					TurnLeft(0.3)
+					TurnLeft(rigAng)
 				elif current_direction == 'right':
-					TurnLeft(0.6)
+					TurnLeft(flatAng)
 				elif current_direction == 'back':
-					TurnRight(0.3)
+					TurnRight(rigAng)
                     
-				GoForward(1)
+				GoForward(1.3)
                 
 				if current_node.front == None and current_node.right == None and current_node.back == None:
 					current_node.left.right = None #若其他方向都沒路就不用再回來了
@@ -142,13 +144,13 @@ if __name__=='__main__':
 				current_direction = 'left'
 			elif current_node.front != None:
 				if current_direction == 'left':
-					TurnRight(0.3)
+					TurnRight(rigAng)
 				elif current_direction == 'right':
-					TurnLeft(0.3)
+					TurnLeft(rigAng)
 				elif current_direction == 'back':
-					TurnRight(0.6)
+					TurnRight(flatAng)
                     
-				GoForward(1)
+				GoForward(1.3)
                 
 				if current_node.left == None and current_node.right == None and current_node.back == None:
 					current_node.front.back = None
@@ -156,13 +158,13 @@ if __name__=='__main__':
 				current_direction = 'front'
 			elif current_node.right != None:
 				if current_direction == 'left':
-					TurnRight(0.6)
+					TurnRight(flatAng)
 				elif current_direction == 'front':
-					TurnRight(0.3)
+					TurnRight(rigAng)
 				elif current_direction == 'back':
-					TurnLeft(0.3)
+					TurnLeft(rigAng)
                     
-				GoForward(1)
+				GoForward(1.3)
                 
 				if current_node.left == None and current_node.front == None and current_node.back == None:
 					current_node.right.left = None
@@ -170,13 +172,13 @@ if __name__=='__main__':
 				current_direction = 'right'
 			elif current_node.back != None:
 				if current_direction == 'left':
-					TurnLeft(0.3)
+					TurnLeft(rigAng)
 				elif current_direction == 'front':
-					TurnLeft(0.6)
+					TurnLeft(flatAng)
 				elif current_direction == 'right':
-					TurnRight(0.3)
+					TurnRight(rigAng)
                     
-				GoForward(1)
+				GoForward(1.3)
                 
 				if current_node.left == None and current_node.front == None and current_node.right == None:
 					current_node.back.front = None
