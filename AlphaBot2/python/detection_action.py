@@ -14,7 +14,7 @@ lrigAng = 0.275
 rrigAng = 0.275
 lflatAng = 0.55
 rflatAng = 0.55
-forwardTime = 1.4
+forwardTime = 1.55
 wallDist = 70
 Ab = AlphaBot2()
 
