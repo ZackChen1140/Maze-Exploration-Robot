@@ -10,13 +10,13 @@ left_dic = {'left': 'back', 'front': 'left', 'right': 'front', 'back': 'right'}
 
 TRIG = 22
 ECHO = 27
-lrigAng = 0.2725
+lrigAng = 0.275
 rrigAng = 0.275
-lflatAng = 0.54
+lflatAng = 0.55
 rflatAng = 0.55
 forwardTime = 1.4
 wallDist = 40
-Ab = AlphaBot2()
+Ab = AlphaBot2(fspeed=20,tspeed=10)
 
 def GoForward(degree):
 	Ab.forward()
