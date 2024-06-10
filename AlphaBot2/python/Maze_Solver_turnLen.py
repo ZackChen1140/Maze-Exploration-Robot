@@ -53,19 +53,19 @@ def detection_action():
     im = picamera.capture_array()
     results = model(im)
     detected_classes = results.pandas().xyxy[0]['name'].tolist()
-    warn()
+    warn(detected_classes)
 
     pwm.setServoPulse(0,2250)
     im = picamera.capture_array()
     results = model(im)
     detected_classes = results.pandas().xyxy[0]['name'].tolist()
-    warn()
+    warn(detected_classes)
 
     pwm.setServoPulse(0, 450)
     im = picamera.capture_array()
     results = model(im)
     detected_classes = results.pandas().xyxy[0]['name'].tolist()
-    warn()
+    warn(detected_classes)
 
     pwm.setServoPulse(0, 1300)
 
