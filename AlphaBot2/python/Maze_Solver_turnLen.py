@@ -43,29 +43,50 @@ def capture_image(picamera, interval=1):
         counter += 1
 
 def warn(detect_cls):
-    if 'cup' in detect_cls:
-        Ab.right()
-        time.sleep(4.2)
-        Ab.stop()
-        print("Find the cup!!")
+    Ab.right()
+    time.sleep(4.2)
+    Ab.stop()
+    print("Find the cup!!")
 
 def detection_action():
     im = picamera.capture_array()
     results = model(im)
     detected_classes = results.pandas().xyxy[0]['name'].tolist()
-    warn(detected_classes)
+    if 'cup' in detected_classes:
+        warn(detected_classes)
+        return
+    
+    pwm.setServoPulse(0,1775)
+    im = picamera.capture_array()
+    results = model(im)
+    detected_classes = results.pandas().xyxy[0]['name'].tolist()
+    if 'cup' in detected_classes:
+        warn(detected_classes)
+        return
 
     pwm.setServoPulse(0,2250)
     im = picamera.capture_array()
     results = model(im)
     detected_classes = results.pandas().xyxy[0]['name'].tolist()
-    warn(detected_classes)
+    if 'cup' in detected_classes:
+        warn(detected_classes)
+        return
+    
+    pwm.setServoPulse(0, 875)
+    im = picamera.capture_array()
+    results = model(im)
+    detected_classes = results.pandas().xyxy[0]['name'].tolist()
+    if 'cup' in detected_classes:
+        warn(detected_classes)
+        return
 
     pwm.setServoPulse(0, 450)
     im = picamera.capture_array()
     results = model(im)
     detected_classes = results.pandas().xyxy[0]['name'].tolist()
-    warn(detected_classes)
+    if 'cup' in detected_classes:
+        warn(detected_classes)
+        return
 
     pwm.setServoPulse(0, 1300)
 
