@@ -105,8 +105,6 @@ def MazeSolver(zastavica):
         time.sleep(1)
         print("10cm forward")
 
-        detection_action()
-
         Ab.forward()
         time.sleep(1.4) # 0.7 second or 10cm forward
         Ab.stop()
@@ -120,6 +118,7 @@ def MazeSolver(zastavica):
                 print("Finish!! Getting out of the maze is successful")
                 return 0
         else: # keep going
+                detection_action()
                 Ab.right() # robot is turning 90 degrees to the right because of the ultrasonic sensors
                 time.sleep(0.3)
                 Ab.stop()
