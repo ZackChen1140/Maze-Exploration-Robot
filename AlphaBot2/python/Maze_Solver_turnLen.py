@@ -10,7 +10,7 @@ Ab = AlphaBot2()
 
 pwm = PCA9685(0x40, debug=True)
 pwm.setPWMFreq(50)
-pwm.setServoPulse(1,650)
+pwm.setServoPulse(1,600)
 pwm.setServoPulse(0,1300)
 
 #ultrasonic sensors
@@ -108,7 +108,7 @@ def MazeSolver(zastavica):
         detection_action()
 
         Ab.forward()
-        time.sleep(1) # 0.7 second or 10cm forward
+        time.sleep(1.4) # 0.7 second or 10cm forward
         Ab.stop()
         time.sleep(1) # 1 second robot not moving
 
@@ -150,7 +150,7 @@ def MazeSolver(zastavica):
 
                         if zastavica == 0 :
                                 print("Forward")
-                                Stack.push(1)
+                                Stack.push(1.4)
                                 return MazeSolver(zastavica)
                         
                 else :
@@ -202,21 +202,21 @@ def MazeSolverSecondTurn():
                 print(Stack_new.get_stack())
                 if smjer == 1:
                         Ab.forward()
-                        time.sleep(1)
+                        time.sleep(1.4)
                 elif direction == 2:
                         Ab.right()
                         time.sleep(0.3)
                         Ab.stop()
                         time.sleep(2)
                         Ab.forward()
-                        time.sleep(1)
+                        time.sleep(1.4)
                 elif direction == 3:
                         Ab.left()
                         time.sleep(0.3)
                         Ab.stop()
                         time.sleep(2)
                         Ab.forward()
-                        time.sleep(1)
+                        time.sleep(1.4)
         else:
                 print("Finish!!")
 
